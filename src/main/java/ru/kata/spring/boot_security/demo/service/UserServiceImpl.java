@@ -49,8 +49,12 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(Long id, User updatetUser) {
-        updatetUser.setPassword(passwordEncoder.encode(updatetUser.getPassword()));
-    userDao.update(id, updatetUser);
+        if (updatetUser.getPassword().equals("")) {
+            updatetUser.setPassword(userDao.show(id).getPassword());
+        } else {
+            updatetUser.setPassword(passwordEncoder.encode(updatetUser.getPassword()));
+        }
+        userDao.update(id, updatetUser);
     }
 
     @Override

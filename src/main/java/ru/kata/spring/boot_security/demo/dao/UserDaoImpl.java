@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public void update(Long id, User updatetUser) {
-        User userToUpdate = show(id);
+        /*User userToUpdate = show(id);
         userToUpdate.setFirstName(updatetUser.getFirstName());
         userToUpdate.setLastName(updatetUser.getLastName());
         userToUpdate.setEmail(updatetUser.getEmail());
@@ -50,8 +50,8 @@ public class UserDaoImpl implements UserDao{
         if (!userToUpdate.getPassword().equals(updatetUser.getPassword())) {
             userToUpdate.setPassword(updatetUser.getPassword());
         }
-        userToUpdate.setRoles(updatetUser.getRoles());
-        //entityManager.merge(updatetUser);
+        userToUpdate.setRoles(updatetUser.getRoles());*/
+        entityManager.merge(updatetUser);
     }
     @Override
     public void delete(Long id) {
